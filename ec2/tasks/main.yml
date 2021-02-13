@@ -1,0 +1,34 @@
+---
+# tasks file for ec2
+
+- name: Launching Master Node
+  ec2:
+    key_name: "key17"
+    instance_type: "t2.micro"
+    image: "ami-08e0ca9924195beba"
+    wait: "yes"
+    count: 1
+    vpc_subnet_id: "subnet-0a5396a7727a70b99"
+    assign_public_ip: yes
+    region: "ap-south-1"
+    instance_tags:
+      Name: "Master Node"
+    state: present
+    group_id: "sg-0f4a13d9c482c9f60"
+
+- name: Launching Slave Nodes
+  ec2:
+    key_name: "key17"
+    instance_type: "t2.micro"
+    image: "ami-08e0ca9924195beba"
+    wait: "yes"
+    count: 2
+    vpc_subnet_id: "subnet-0a5396a7727a70b99"
+    assign_public_ip: yes
+    region: "ap-south-1"
+    instance_tags:
+      Name: "Slave Node"
+    state: present
+    group_id: "sg-0f4a13d9c482c9f60"
+ 
+
